@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sugamya Patkari - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6c63ff;
+      --primary-light: #a29bfe;
+      --primary-dark: #5146e1;
+      --secondary: #ff7675;
+      --bg: #f9f9ff;
+      --text: #333;
+      --text-light: #666;
+      --accent: #28a745;
+      --dark-bg: #121212;
+      --dark-card: #1e1e1e;
+      --dark-text: #f1f1f1;
+      --dark-text-light: #b0b0b0;
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg); 
+      color: var(--text);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+    
+    .dark-mode {
+      background-color: var(--dark-bg); 
+      color: var(--dark-text);
+    }
+    
+    /* Header Styles */
+    header {
+      text-align: center; 
+      padding: 6rem 1rem 4rem; 
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+    
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      animation: fadeInDown 1s ease;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      position: relative;
+      animation: fadeIn 1.5s ease;
+    }
+    
+    header img {
+      border-radius: 50%; 
+      width: 180px; 
+      height: 180px;
+      object-fit: cover;
+      margin: 1rem 0; 
+      border: 5px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      animation: fadeIn 2s ease;
+      transition: var(--transition);
+    }
+    
+    header img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      position: relative;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      color: var(--primary-light);
+      transform: translateY(-3px);
+    }
+    
+    /* Section Styles */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .section {
+      padding: 5rem 0;
+    }
+    
+    .section:nth-child(even) {
+      background-color: rgba(108, 99, 255, 0.03);
+    }
+    
+    .dark-mode .section:nth-child(even) {
+      background-color: rgba(30, 30, 30, 0.5);
+    }
+    
+    h2 {
+      color: var(--primary); 
+      margin-bottom: 2rem; 
+      font-size: 2.2rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    
+    /* Skills Styles */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .skills span {
+      display: inline-block;
+      background: rgba(108, 99, 255, 0.1);
+      color: var(--primary-dark);
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: var(--transition);
+      border: 1px solid rgba(108, 99, 255, 0.3);
+    }
+    
+    .dark-mode .skills span {
+      background: rgba(108, 99, 255, 0.2);
+      color: var(--primary-light);
+    }
+    
+    .skills span:hover {
+      transform: translateY(-3px);
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+    }
+    
+    /* Card Styles */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .card {
+      background: #fff; 
+      padding: 2rem; 
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .dark-mode .card {
+      background: var(--dark-card); 
+      color: var(--dark-text);
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card:hover::before {
+      width: 8px;
+    }
+    
+    /* Achievements */
+    .achievements-list {
+      list-style: none;
+    }
+    
+    .achievements-list li {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .achievements-list li::before {
+      content: '🏆';
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+    
+    .dark-mode .contact-form {
+      background: var(--dark-card);
+    }
+    
+    .contact-form:hover {
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+    
+    .dark-mode .form-group label {
+      color: var(--dark-text-light);
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: rgba(108, 99, 255, 0.03);
+    }
+    
+    .dark-mode input, 
+    .dark-mode textarea {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: #444;
+      color: var(--dark-text);
+    }
+    
+    input:focus, 
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    }
+    
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    button {
+      padding: 1rem 2rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center; 
+      padding: 3rem 0; 
+      font-size: 0.9rem;
+      background-color: rgba(108, 99, 255, 0.05);
+      color: var(--text-light);
+    }
+    
+    .dark-mode .footer {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: var(--dark-text-light);
+    }
+    
+    /* Dark Mode Toggle */
+    .toggle-mode {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(108, 99, 255, 0.1);
+      border: none;
+      padding: 0.75rem;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      z-index: 100;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+    
+    .dark-mode .toggle-mode {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--dark-text);
+    }
+    
+    .toggle-mode:hover {
+      transform: scale(1.1);
+      background: rgba(108, 99, 255, 0.2);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 4rem 1rem 3rem;
+      }
+      
+      header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section {
+        padding: 3rem 0;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-form {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-mode" onclick="toggleMode()" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+  
+  <header>
+    <div class="container">
+      <h1>Sugamya Patkari</h1>
+      <p>Computer Science Engineer | Developer | Innovator</p>
+      <img src="https://via.placeholder.com/150" alt="Sugamya Profile Picture"/>
+      <div class="social-links">
+        <a href="mailto:sugamyapatkari@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/sugamyapatkari" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>I'm a passionate Computer Science Engineering student at GNITS with expertise in web development, AI chatbot building, and hackathon problem solving. I love building things that solve real problems and create meaningful impact through technology.</p>
+        <p style="margin-top: 1rem;">When I'm not coding, you can find me participating in hackathons, contributing to open-source projects, or mentoring fellow students in their tech journey.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="skills">
+        <span><i class="fab fa-html5"></i> HTML</span>
+        <span><i class="fab fa-css3-alt"></i> CSS</span>
+        <span><i class="fab fa-python"></i> Python</span>
+        <span><i class="fab fa-java"></i> Java</span>
+        <span><i class="fas fa-code"></i> C</span>
+        <span><i class="fas fa-database"></i> MongoDB</span>
+        <span><i class="fas fa-flask"></i> Flask</span>
+        <span><i class="fas fa-database"></i> MySQL</span>
+        <span><i class="fas fa-robot"></i> Dialogflow</span>
+        <span><i class="fab fa-js"></i> JavaScript</span>
+        <span><i class="fab fa-git-alt"></i> Git</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>LearnHub</h3>
+          <p>An interactive e-learning platform designed to enhance user engagement through intuitive design and personalized learning paths. Features include video lessons, quizzes, and progress tracking.</p>
+          <div style="margin-top: 1rem;">
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Institutional Chatbot</h3>
+          <p>Built using Dialogflow and Kommunicate for smart, text-based query resolution for college services. Handles FAQs about admissions, courses, and campus facilities with 90% accuracy.</p>
+          <div style="margin-top: 1rem;">
+            <span class="tech-tag">Dialogflow</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Kommunicate</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>HealthTracker App</h3>
+          <p>A mobile application that helps users monitor their health metrics, set fitness goals, and track progress over time with data visualization and reminders.</p>
+          <div style="margin-top: 1rem;">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Redux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Achievements</h2>
+      <div class="card">
+        <ul class="achievements-list">
+          <li>Runner-up - 24hr Hackathon @ Mahindra University (2023)</li>
+          <li>Winner - Ideathon, Women Leadership Conclave @ GNITS (2022)</li>
+          <li>3rd Place - Chatbot Hackathon @ GNITS (2022)</li>
+          <li>Finalist - National Level Coding Competition (2021)</li>
+          <li>Published research paper on "AI in Education" in IEEE Journal (2023)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+        </div>
+        <button type="submit">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+      <div id="formResponse" style="margin-top: 2rem; text-align: center;"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Sugamya Patkari. All rights reserved.</p>
+      <p style="margin-top: 0.5rem;">Built with <i class="fas fa-heart" style="color: var(--secondary);"></i> and <i class="fas fa-code"></i></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+      const icon = document.querySelector('.toggle-mode i');
+      if (document.body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    }
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button');
+      const originalBtnText = submitBtn.innerHTML;
+      
+      // Show loading state
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.disabled = true;
+      
+      try {
+        const data = Object.fromEntries(new FormData(form).entries());
+        
+        const res = await fetch('/submit-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        const result = await res.json();
+        const responseDiv = document.getElementById('formResponse');
+        
+        if (result.success) {
+          responseDiv.innerHTML = `<div style="color: var(--accent);"><i class="fas fa-check-circle"></i> ${result.message}</div>`;
+          form.reset();
+        } else {
+          responseDiv.innerHTML = `<div style="color: var(--secondary);"><i class="fas fa-exclamation-circle"></i> ${result.message}</div>`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('formResponse').innerHTML = 
+          `<div style="color: var(--secondary);"><i class="fas fa-exclamation-circle"></i> Something went wrong. Please try again.</div>`;
+      } finally {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      }
+    });
+    
+    // Add smooth scrolling to all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
